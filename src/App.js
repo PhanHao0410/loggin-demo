@@ -1,23 +1,25 @@
 import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
 
 function App() {
+  const [hide, setHide] = useState(true);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="loggin">
+        <div className="form-singIn">
+          <p>Sign In</p>
+          <input type="email" placeholder="Enter your email" /><br />
+          <div className="passwordInput">
+            <input type={hide ? "password" : "texr"} placeholder="Enter your password" />
+            <span onClick={() => setHide(!hide)}><i class={hide ? "fa-regular fa-eye-slash" : "fa-regular fa-eye"}></i></span>
+          </div>
+
+          <button>SIGN IN</button><br />
+          <a>Forgot Password?</a>
+        </div>
+      </div>
+      <div className="loggin-right"></div>
     </div>
   );
 }
