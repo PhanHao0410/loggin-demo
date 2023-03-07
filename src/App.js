@@ -1,37 +1,26 @@
 import React, { useState } from 'react';
 // import { ToastContainer, toast } from 'react-toastify';
 import './App.scss';
-import Loggin from './asesst/view/loggin/Loggin';
-import ForgetPassword from './asesst/view/loggin/forgetPassword';
-import CreatNewPassword from './asesst/view/loggin/CreatNewPassword';
-// import {
-//   BrowserRouter,
-//   Switch,
-//   Route,
-//   Routes
-// } from "react-router-dom";
+import Login from './views/auths/login';
+import ForgetPassword from './views/login/forgetPassword';
+import CreatNewPassword from './views/login/CreatNewPassword';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+
+
+
+
+
 function App() {
   return (
-    // <BrowserRouter>
-    <div className="App">
-      <header>
-        <Loggin />
-      </header>
-      {/* <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        /> */}
-    </div>
-    // </BrowserRouter>
-  );
+    <Router>
+      <Switch>
+        <Route exact path={["/login", "/"]} component={Login} />
+        <Route exact path="/forget-password" component={ForgetPassword} />
+        <Route exact path="/create-password" component={CreatNewPassword} />
+      </Switch>
+    </Router>
+
+  )
 }
 
 export default App;
