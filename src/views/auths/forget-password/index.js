@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./forgetPassword.scss";
+import "./style.scss";
 import { withRouter } from 'react-router-dom';
 
 
