@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./CreatNewPassword.scss";
+import "./style.scss";
 import { withRouter } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 function CreatNewPassword() {
