@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./style.scss";
-import { withRouter } from 'react-router-dom';
-import { Link, NavLink } from 'react-router-dom';
+// import { Link, NavLink } from 'react-router-dom';
 function CreatNewPassword() {
     const [errorPassword, setErrorPassword] = useState(null);
     const [hide, setHide] = useState(true);
