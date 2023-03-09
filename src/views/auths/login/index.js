@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-// import { toast } from 'react-toastify';
-import "./loggin.scss";
-// import { withRouter } from 'react-router-dom';
+import "./style.scss";
+import { toast } from 'react-toastify';
 import { Link, Router } from 'react-router-dom';
 function Loggin() {
     const [email, setEmail] = useState(null);
     const [password, setPasswod] = useState(null);
     const [errorEmail, setErrorEmail] = useState(null);
     const [errorPassword, setErrorPassword] = useState(null);
+    const [signIn, setSignIn] = useState(null);
     const [hide, setHide] = useState(true);
 
     function handleChangeEmail(event) {
@@ -61,20 +61,22 @@ function Loggin() {
         })
             .then(response => response.json())
             .then((dataSignIn) => {
-                console.log("check data: ", dataSignIn);
                 if (dataSignIn.status === "error") {
-                    alert(dataSignIn.message);
+                    toast.error(dataSignIn.message);
                     return false;
-                } else {
-                    alert(`Sign in succees with ${email}`);
-                    localStorage.setItem('dataSignIn', JSON.stringify(dataSignIn));
-                    return true;
                 }
+                setSignIn(true)
+                toast.success("Successfully Sign In!")
+                const dataSignInLocal = localStorage.setItem('DATASIGNIN', JSON.stringify(dataSignIn));
+                return signIn;
+
             })
             .catch((err) => {
                 console.log("check err: ", err)
             })
     }
+    // const btn = document.querySelector("#btn-signIn");
+    // btn.addEventListener('click', checkSignIn);
 
     return (
         <div className="Loggin">
@@ -89,12 +91,14 @@ function Loggin() {
                     </div>
                     {errorPassword && <div className="showErrorPassword" style={{ color: "red" }}>{errorPassword}</div>}
 
-                    <Link to="/test-signin-success"><button onClick={() => checkSignIn()}>SIGN IN</button><br /></Link>
+                    <Link className="linkForgot" onClick={() => checkSignIn()} to={signIn ? "/test-signin-success" : "/"}><button id="btn-signIn">SIGN IN</button><br /></Link>
 
-                    <div className="forgetPasswordLoggin" >
-                        <Link className="forgetPasswordLoggin" to="/fogot-password">Forgot Password?</Link>
-                    </div>
+                    <Link to="/forget-password">
+                        <div className="forgetPasswordLoggin" >Forgot Password?</div>
+                    </Link>
                 </div>
+
+
             </div>
             <div className="loggin-right"></div>
         </div>
