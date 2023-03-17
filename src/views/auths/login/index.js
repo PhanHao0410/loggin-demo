@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import "./style.scss";
 import { toast } from 'react-toastify';
-import { Link, Router } from 'react-router-dom';
+import { Link, Router, useHistory } from 'react-router-dom';
+import { ACCESS_TOKEN, PATHS } from "../../../constants";
 function Loggin() {
     const [email, setEmail] = useState(null);
     const [password, setPasswod] = useState(null);
     const [errorEmail, setErrorEmail] = useState(null);
     const [errorPassword, setErrorPassword] = useState(null);
-    const [signIn, setSignIn] = useState(null);
     const [hide, setHide] = useState(true);
-
+    const history = useHistory()
     function handleChangeEmail(event) {
         let getEmail = event.target.value.trim();
         let checkEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -60,21 +60,29 @@ function Loggin() {
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
             .then(response => response.json())
-            .then((dataSignIn) => {
-                if (dataSignIn.status === "error") {
-                    toast.error(dataSignIn.message);
-                    return false;
+            .then((response) => {
+                console.log("Login response:", response);
+                if (response.status === "error") {
+                    toast.error(response.message);
+                } else {
+                    toast.success("Successfully Sign In!")
+                    localStorage.setItem('DATASIGNIN', JSON.stringify(response));
+                    localStorage.setItem(ACCESS_TOKEN, response.token);
+                    history.push(PATHS.HOME);
                 }
-                setSignIn(true)
-                toast.success("Successfully Sign In!")
-                const dataSignInLocal = localStorage.setItem('DATASIGNIN', JSON.stringify(dataSignIn));
-                return signIn;
-
             })
             .catch((err) => {
                 console.log("check err: ", err)
             })
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem(ACCESS_TOKEN)
+        if (token != null) {
+            history.push(PATHS.HOME);
+        }
+    }, [])
+
     // const btn = document.querySelector("#btn-signIn");
     // btn.addEventListener('click', checkSignIn);
 
@@ -91,9 +99,10 @@ function Loggin() {
                     </div>
                     {errorPassword && <div className="showErrorPassword" style={{ color: "red" }}>{errorPassword}</div>}
 
-                    <Link className="linkForgot" onClick={() => checkSignIn()} to={signIn ? "/test-signin-success" : "/"}><button id="btn-signIn">SIGN IN</button><br /></Link>
+                    {/* <Link className="linkForgot" onClick={() => checkSignIn()} to={signIn ? "/test-signin-success" : "/"}><button id="btn-signIn">SIGN IN</button><br /></Link> */}
+                    <Link className="linkForgot" onClick={() => checkSignIn()}><button id="btn-signIn">SIGN IN</button><br /></Link>
 
-                    <Link to="/forget-password">
+                    <Link to={PATHS.FORGETPASSWORD}>
                         <div className="forgetPasswordLoggin" >Forgot Password?</div>
                     </Link>
                 </div>
