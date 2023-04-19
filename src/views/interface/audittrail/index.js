@@ -12,14 +12,14 @@ function AuditTrail() {
                     </div>
                     <div className="toolbars-content">
                         <div className="folder-tools">
-                            <div className="creat-new-list"><i class="fas fa-sliders-h"></i></div>
+                            <div className="creat-new-list"><i className="fas fa-sliders-h"></i></div>
                         </div>
                     </div>
                     <div className="data-table-container">
                         <table className="data-table-title">
                             <thead className="thead-data-table">
                                 <tr>
-                                    <th className="border-rights border-bottoms align-left">Timestamp <i class="fas fa-arrow-down"></i></th>
+                                    <th className="border-rights border-bottoms align-left">Timestamp <i className="fas fa-arrow-down"></i></th>
                                     <th className="border-rights border-bottoms align-right">User</th>
                                     <th className="border-rights border-bottoms align-right">Page ID</th>
                                     <th className="border-rights border-bottoms align-right">Action</th>

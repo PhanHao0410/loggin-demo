@@ -16,11 +16,11 @@ function MeetingLog() {
                         </div>
                         <div className="folder-tools">
                             <div className="search-in-meeting">
-                                <i class="fas fa-search"></i>
+                                <i className="fas fa-search"></i>
                                 <input placeholder="Search in Meeting" />
                             </div>
-                            <div className="creat-new-list"><i class="fas fa-sliders-h"></i></div>
-                            <div className="creat-new-list"><i class="fas fa-file-upload"></i></div>
+                            <div className="creat-new-list"><i className="fas fa-sliders-h"></i></div>
+                            <div className="creat-new-list"><i className="fas fa-file-upload"></i></div>
 
                         </div>
                     </div>

@@ -13,10 +13,10 @@ function WechatLog() {
                     <div className="toolbars-content">
                         <div className="folder-tools">
                             <div className="search-in-meeting">
-                                <i class="fas fa-search"></i>
+                                <i className="fas fa-search"></i>
                                 <input placeholder="Search by User" />
                             </div>
-                            <div className="creat-new-list"><i class="fas fa-sliders-h"></i></div>
+                            <div className="creat-new-list"><i className="fas fa-sliders-h"></i></div>
 
                         </div>
                     </div>

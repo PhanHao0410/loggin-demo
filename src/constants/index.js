@@ -8,5 +8,8 @@ export const PATHS = {
     COMPANY: '/companies',
     MEETINGLOG: '/meeting-log',
     WECHATLOG: '/wechat-log',
-    AUDITTRAIL: '/audit-trail'
+    AUDITTRAIL: '/audit-trail',
+    // INFORCOMPANY: `/company/:id`
 }
+
+export const BASE_URL = 'https://rms-dev.aps.nexus-dev.com/api/v1/';
