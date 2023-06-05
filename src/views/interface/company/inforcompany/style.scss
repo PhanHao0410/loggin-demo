@@ -423,9 +423,9 @@ html{
         
     }
     .modal-drawer{
-        padding: 10px;
+        padding: 0px 5px;
         .close-modal-date{
-            font-size: 20px;
+            font-size: 18px;
             text-transform: uppercase;
             font-weight: 600;
             display: flex;
@@ -434,53 +434,61 @@ html{
             i{
                 margin-top: 3px;
                 padding-right: 10px;
-                font-size: 24px;
+                padding: 3px;
+                font-size: 22px;
                 align-items: center;
             }
         }
         .date-range-container{
             display: inline-block;
+            padding-top: 5px;
             .date-range-modal{
                 font-weight: 600;
                 color: rgb(125,125,125);
                 font-size: 17px;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
             }
             .start-end-date{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 10px 0px;
-                border-bottom: 2px solid rgb(0, 0, 0, 0.2);
+                // border-bottom: 2px solid rgb(0, 0, 0, 0.2);
                 color: rgb(102, 102, 102);
                 margin-bottom: 10px;
-                input{
-                    border: none;
-                    font-size: 16px;
-                    outline: none;
-                    width: 90%;
+                height: 45px;
+                width: 100%;
+                .start-date-picker{
+                    height: 60px;
+                    width: 400px;
                 }
-                i{
-                    font-size: 22px;
-                    cursor: pointer;
-                }
+                
             }
         }
         .action-modal{
             display: flex;
             align-items: center;
             justify-content: end;
-            padding-top: 25px;
+            padding-top: 0px;
             padding-right: 10%;
             font-weight: 600;
             font-size: 18px;
             .reset-date{
-                padding: 0px 30px;
                 cursor: pointer;
+                border: none;
+                background-color: white;
+                font-size: 18px;
+                font-weight: 600;
+                margin-right: 5px;
             }
             .apply-date{
                 color: rgb(46,125,50);
                 cursor: pointer;
+                border: none;
+                background-color: white;
+                font-size: 18px;
+                font-weight: 600;
+                margin-left: 5px;
             }
         }
      }

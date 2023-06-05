@@ -52,6 +52,7 @@ function Loggin() {
     function checkSignIn() {
         let dataSignIn = {
             email: email,
+            last_location: "1.54.210.69",
             password: password
         }
         fetch('https://rms-dev.aps.nexus-dev.com/api/v1/auth/signin', {
@@ -68,7 +69,8 @@ function Loggin() {
                     toast.success("Successfully Sign In!")
                     localStorage.setItem('DATASIGNIN', JSON.stringify(response));
                     localStorage.setItem(ACCESS_TOKEN, response.token);
-                    history.push(PATHS.HOME);
+                    console.log('check localhost: ', localStorage)
+                    // history.push(PATHS.HOME);
                 }
             })
             .catch((err) => {
@@ -76,15 +78,13 @@ function Loggin() {
             })
     }
 
-    useEffect(() => {
-        const token = localStorage.getItem(ACCESS_TOKEN)
-        if (token != null) {
-            history.push(PATHS.HOME);
-        }
-    }, [])
+    // useEffect(() => {
+    //     const token = localStorage.getItem(ACCESS_TOKEN)
+    //     if (token) {
+    //         history.push(PATHS.HOME);
+    //     }
+    // }, [])
 
-    // const btn = document.querySelector("#btn-signIn");
-    // btn.addEventListener('click', checkSignIn);
 
     return (
         <div className="Loggin">

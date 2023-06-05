@@ -1,0 +1,140 @@
+.ContentMeeting{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    font-family: "Noto Sans JP", sans-serif; 
+    .content-meeting-container{
+        margin: 30px;
+        
+        .meeting-title-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            .meeting-title-value{
+               font-weight: 600;
+               font-size: 20px;
+            }
+            i{
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+        }
+        .meeting-tag-company{
+            .tag-child{
+                display: inline-block;
+                padding: 10px;
+                border: 1px dashed rgb(2,136,209);
+                border-radius: 20px;
+                margin-right: 10px;
+                color: rgb(2,136,209);
+                margin-bottom: 20px;
+            }
+
+        }
+        .meeting-tag-content{
+            margin-top: 20px;
+            .title-content-child{
+                color: rgb(2,136,209);
+                font-weight: 600;
+                font-size: 20px;
+                margin: 20px 0px;
+            }
+            .content-tag{
+                margin-bottom: 10px;
+                color: rgb(134,134,134);
+
+            }
+        }
+        table{
+            display: table;
+            width: 100%;
+            height: 50px;
+            border-radius: 4px ;
+            thead{
+                height: 20px;
+                background-color: rgb(240,240,240);
+                text-align: left;
+               
+                tr{
+                    th{
+                        padding-left: 15px;
+                        font-size: 16px;
+                        letter-spacing: 0.4px;
+                        border-bottom: 1px solid rgb(0, 0, 0, 0.23);
+                        background-color: rgb(245,245,245);
+                        font-weight: 500;
+                    }
+                    .thead-number{
+                        width: 50px;
+
+                    }
+                }
+            }
+            tbody{
+                text-align: left;
+                background-color: white;
+                tr{
+                    width: 100%;
+                    height: 60px;
+                    font-size: 15px;
+                    td{
+                        padding-left: 15px;
+                        border-bottom: 1px solid rgb(0, 0, 0, 0.23);
+                        min-width: 100px;
+                    }
+                    .link-company-tag{
+                        max-width: 180px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        a{
+                          color: RGB(22 147 216);  
+                          text-decoration: none;
+                          font-size: 16px;
+                          &:hover{
+                            text-decoration: underline;
+                          }
+                        }
+                    }
+                    .update-file-name{
+                        text-overflow: ellipsis;
+                    }
+                    .icon-action{
+                        max-width: 250px;
+                        min-width: 200px;
+                        .tag-company-container{
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .tag-company-link{
+                                align-items: center;
+                                text-transform: uppercase;
+                                p{
+                                    text-align: center;
+                                    display: inline-block;
+                                    border: 1px dashed RGB(20 144 212);
+                                    color: RGB(20 144 212);
+                                    border-radius: 20px;
+                                    width: 100%;
+                                    padding: 5px;
+                                }
+                            }
+                            i{
+                                margin-right: 5px;
+                                cursor: pointer;
+                                padding: 5px;
+                                font-size: 18px;
+                                float: right;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}

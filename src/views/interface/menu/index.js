@@ -4,10 +4,13 @@ import MeetingLog from "../meetinglog/index";
 import WechatLog from "../wechatlog/index";
 import AuditTrail from "../audittrail/index";
 import InforCompany from "../company/inforcompany";
+import WechatMediaLink from "../wechatlog/medialinkwechat";
 import "./style.scss";
 import { HashRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
-import { ACCESS_TOKEN, PATHS } from '../../../constants';
+import { PATHS, ACCESS_TOKEN } from '../../../constants';
 
+const TABS = [{ title: 'Companies', icon: 'fas fa-city', path: 'COMPANY' }, { title: 'Meeting Log', icon: 'fas fa-users', path: 'MEETINGLOG' },
+{ title: 'Wechat Log', icon: 'far fa-comment', path: 'WECHATLOG' }, { title: 'Audit Trail', icon: 'fas fa-desktop', path: 'AUDITTRAIL' }]
 function Menu() {
     const [hideMenuStatic, setHideMenuStatic] = useState(false)
     const [hideComp, setHideComp] = useState(true)
@@ -17,36 +20,12 @@ function Menu() {
     const [hideLanguage, setHideLanguage] = useState(false)
     const [hideLogOut, setHideLogOut] = useState(false)
     const history = useHistory()
-    function clickCompanies() {
-        setHideComp(true)
-        setHideMeet(false)
-        setHideWechat(false)
-        setHideAudi(false)
-        history.push(PATHS.COMPANY)
-    }
-    function clickMeetingLog() {
-        setHideComp(false)
-        setHideMeet(true)
-        setHideWechat(false)
-        setHideAudi(false)
-        history.push(PATHS.MEETINGLOG)
-    }
-    function clickWechatLog() {
-        setHideComp(false)
-        setHideMeet(false)
-        setHideWechat(true)
-        setHideAudi(false)
-        history.push(PATHS.WECHATLOG)
-    }
-    function clickAuditTrail() {
-        setHideComp(false)
-        setHideMeet(false)
-        setHideWechat(false)
-        setHideAudi(true)
-        history.push(PATHS.AUDITTRAIL)
-    }
+    const [currentTab, setCurrentTab] = useState(TABS[0])
+
+
     const clickHandleLogOut = () => {
-        localStorage.clear()
+        // localStorage.clear()
+        localStorage.removeItem(ACCESS_TOKEN);
         history.push(PATHS.LOGIN)
     }
 
@@ -55,7 +34,23 @@ function Menu() {
         if (token == null) {
             history.push(PATHS.LOGIN);
         }
-    }, [])
+        if (currentTab.title === 'Companies') {
+            return history.push(PATHS.COMPANY)
+        }
+        if (currentTab.title === 'Meeting Log') {
+            history.push(PATHS.MEETINGLOG)
+        }
+        if (currentTab.title === 'Wechat Log') {
+            history.push(PATHS.WECHATLOG)
+        }
+        if (currentTab.title === 'Audit Trail') {
+            history.push(PATHS.AUDITTRAIL)
+        }
+    }, [currentTab])
+
+    const clickMenuSelector = (data) => {
+        setCurrentTab(data)
+    }
     return (
         <>
             <div className="Menu">
@@ -65,8 +60,14 @@ function Menu() {
                         <p className="p-menu-static">RMS</p>
                     </div>
                     <div className="menu-selector">
+                        {TABS.map((tab) => {
+                            return <div onClick={() => clickMenuSelector(tab)} className={tab.title === currentTab.title ? "menu-item" : "seleter-item"}>
+                                <i className={tab.icon}></i>
+                                <p>{tab.title}</p>
+                            </div>
 
-                        <div onClick={() => clickCompanies()} className={hideComp ? "menu-item" : "seleter-item"}>
+                        })}
+                        {/* <div onClick={() => clickCompanies()} className={hideComp ? "menu-item" : "seleter-item"}>
                             <i className="fas fa-city"></i>
                             <p>Companies</p>
                         </div>
@@ -81,7 +82,7 @@ function Menu() {
                         <div onClick={() => clickAuditTrail()} className={hideAudi ? "menu-item" : "seleter-item"}>
                             <i className="fas fa-desktop"></i>
                             <p>Audit Trail</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="overall-container">
@@ -123,6 +124,7 @@ function Menu() {
                             <Route path={PATHS.WECHATLOG} component={WechatLog} />
                             <Route path={PATHS.AUDITTRAIL} component={AuditTrail} />
                             <Route path="/company/:id" component={InforCompany} />
+                            <Route path="/wechatlog/:id/sharedMediaAndLink" component={WechatMediaLink} />
                             <Route path="/" component={Company} />
 
                         </Switch>

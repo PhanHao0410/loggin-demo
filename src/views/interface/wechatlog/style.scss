@@ -104,67 +104,96 @@ html{
                 }
                 .data-table-container{
                     width: 97%;
-                    height: 70%;
+                    height: 80vh;
                     border: 1px solid rgb(0, 0, 0, 0.2);
                     border-radius: 4px;
                     background-color: rgb(255, 255, 255);
                     margin-top: 20px;
                     position: relative;
                     overflow-y: hidden;
-                    .data-table-title{
-                        display: table;
+                    display: flex;
+                    .wechat-history{
+                        border: 1px solid rgb(158, 158, 158);
+                        width:24%;
+                        height: 100%;
+                        border-right: none;
+                        overflow-x: scroll;
+                        overflow-y: scroll;
+                        float: left;
+                       .wechat-history-item{
+                        border: 1px solid rgb(158, 158, 158);
                         width: 100%;
-                        border-collapse: collapse;
-                        border-spacing: 0px;
-                        min-width: 650px;
-                        .thead-data-table{
-                            display: table-header-group;
-                            font-size: 14px;
-                            background: rgba(0, 0, 0, 0.04);
-                            color: rgb(33, 33, 33);
-                            .border-rights{
-                                border-right: 1px solid rgba(0, 0, 0, 0.2);
-                            }
-                            .border-bottoms{
-                                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-                            }
-                            .first-thead-data{
-                                display: table-row;
-                                vertical-align: middle;
-                                outline: 0px;
-                                td{
-                                    font-size: 14px;
-                                    letter-spacing: 0.4px;
-                                    line-height: 1.5rem;
-                                    color: rgb(33, 33, 33);
-                                    display: table-cell;
-                                    vertical-align: inherit;
-                                    text-align: center;
-                                    padding: 16px;
-                                    font-weight: 600;
+                        height: 120px;
+                        border-radius: 5px;
+                        .history-item-title{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding: 0px 12px;
+                            .history-avatar-container{
+                                display: flex;
+                                align-items: center;
+                                margin-top: 15px;
+                                .avatar-title{
+                                    border: none;
+                                    margin-right: 10px;
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: white;
+                                    background-color: rgb(76,204,204);
+                                    p{
+                                        text-transform: uppercase;
+                                        font-size: 18px;
+                                        font-weight: 600;
+                                        text-align: center;
+                                    }
                                 }
-                                th{
-                                    font-size: 14px;
-                                    letter-spacing: 0.4px;
-                                    line-height: 1.5rem;
-                                    color: rgb(33, 33, 33);
-                                    display: table-cell;
-                                    vertical-align: inherit;
-                                    text-align: center;
-                                    padding: 16px;
+                                p{
+                                    font-size: 16px;
                                     font-weight: 600;
+                                    text-align: center;
                                 }
                                 
                             }
-                        }
-                        tbody{
-                            height: 62px;
-                            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-                            tr{
-                                text-align: center;
-                               
+                            .history-item-date{
+                                font-size: 15px;
+
                             }
                         }
+                        .history-item-content{
+                            padding-left: 12px;
+                            margin-top: 30px;
+                            font-size: 16px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                    .history-item-current{
+                        background-color: rgb(2,136,209) !important;
+                        color: white !important;
+                    } 
+                    }
+                    .wechat-history-padding{
+                        width: 1%;
+                        height: 100%;
+                        background-color: rgb(250,250,250);
+
+                    }
+                    .wechat-history-content{
+                        width: 75%;
+                        float: right;
+                    }
+                    .error-no-result{
+                        display: flex;
+                        justify-content: center;
+                        margin: 30px auto;
+                        color: red;
+                        font-size: 20px;
                     }
                 }
             }

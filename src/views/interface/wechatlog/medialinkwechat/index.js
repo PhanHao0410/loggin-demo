@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getRequest, postRequest } from '../../../../services/index';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import './style.scss';
-import { getRequest, postRequest } from '../../../services';
-import Moment from 'react-moment';
-import WechatMessage from "./wechat-message";
+import MediaWechat from "./mediawechatlog";
+import LinkWechat from "./linkwechatlog";
 import { Button, List, ListItem, Drawer, Divider, PaperProps } from "@mui/material";
 import { height } from "@mui/system";
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-function WechatLog() {
-    const [historyWechat, setHistoryWechat] = useState([])
-    const [currentHistory, setCurrentHistory] = useState(null)
+import Moment from "react-moment";
+
+const TABS = ["Media", "Links"]
+function WechatMediaLink() {
+    const param = useParams();
+    const [dataWechat, setDataWechat] = useState(null)
+    const [currentTab, setCurrentTab] = useState(TABS[0])
+    const [value, setValue] = useState(0);
     const [modalDrawer, setModalDrawer] = useState(false)
     const [valueDateStart, setValueDateStart] = useState(null)
     const [valueDateEnd, setValueDateEnd] = useState(null)
@@ -21,85 +30,75 @@ function WechatLog() {
     const toggleDrawer = (open) => (event) => {
         setModalDrawer(open)
     }
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+    console.log('check param id: ', param.id)
+
+
     useEffect(() => {
-        const url = `wechat/users?name=${searchInput}&${searchDateHistory}offset=0`;
+        const url = `wechat/user/${param.id}`
         getRequest(url, (data) => {
-            // console.log('check data wechat: ', data)
-            setHistoryWechat(data.list)
-            setCurrentHistory(data.list[0])
+            setDataWechat(data)
         })
-    }, [searchDateHistory, searchInput])
+    }, [param])
     const clickApplyDate = () => {
         setModalDrawer(false)
         // { valueDateStart !== null ? console.log('check start date: ', moment(valueDateStart.$d).format('YYYY-MM-DD')) : console.log('') }
         // { valueDateEnd !== null ? console.log('check end date: ', moment(valueDateEnd.$d).format('DD/MM/YYYY')) : console.log('') }
         if (valueDateStart !== null && valueDateEnd === null) {
-            setSearchDateHistory(`start_date=${moment(valueDateStart.$d).format('YYYY-MM-DD')}&`)
+            setSearchDateHistory(`start_date=${moment(valueDateStart.$d).unix()}&end_date=NaN`)
         }
         if (valueDateStart === null && valueDateEnd !== null) {
-            setSearchDateHistory(`end_date=${moment(valueDateEnd.$d).format('YYYY-MM-DD')}&`)
+            setSearchDateHistory(`start_date=NaN&end_date=${moment(valueDateEnd.$d).unix()}`)
         }
         if (valueDateStart !== null && valueDateEnd !== null) {
-            setSearchDateHistory(`start_date=${moment(valueDateStart.$d).format('YYYY-MM-DD')}&end_date=${moment(valueDateEnd.$d).format('YYYY-MM-DD')}&`)
+            setSearchDateHistory(`start_date=${moment(valueDateStart.$d).unix()}&end_date=${moment(valueDateEnd.$d).unix()}`)
         }
         if (valueDateStart === null && valueDateEnd === null) {
-            setSearchDateHistory('')
+            setSearchDateHistory(`start_date=NaN&end_date=NaN`)
         }
     }
     const clickResetDate = () => {
         setValueDateStart(null)
         setValueDateEnd(null)
     }
-    const handleSearchInput = (event) => {
-        setSearchInput(event.target.value)
-    }
-    // console.log('check data history wechat: ', historyWechat)
-    // console.log('check data current history: ', currentHistory)
     return (
-        <div className="WechatLog">
-            <div className="overall-container">
-                <div className="overall-content">
-                    <p className="content">Wechat Log</p>
-                    <div className="title-content">
-                        Wechat Log
+        <div className="Media-And-Link">
+            {dataWechat &&
+                <>
+                    <div className="title-container">
+                        <div className="media-title-content">{`Wechat log > ${dataWechat.remark} > Shared Media & Links > ${value === 0 ? "MEDIA" : "LINKS"}`}</div>
+                        <h3 className="media-title-main">Shared Media & Links</h3>
                     </div>
                     <div className="toolbars-content">
+                        <div className="toolbar-content-title">
+                            {/* {TABS.map((tab) => {
+                                return <>
+                                    <div className={tab === currentTab ? "content-title-selector" : "content-title-static"} onClick={() => setCurrentTab(tab)}>{tab}</div>
+                                </>
+                            })} */}
+                            <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                                <Tabs value={value} onChange={handleChange} centered>
+                                    <Tab label="Media" />
+                                    <Tab label="Links" />
+                                </Tabs>
+                            </Box>
+                        </div>
                         <div className="folder-tools">
                             <div className="search-in-meeting">
-                                <i className="fas fa-search" onClick={() => setSearchDateHistory('start_date=2023-02-27&')}></i>
-                                <input placeholder="Search by User" onChange={(event) => handleSearchInput(event)} value={searchInput} />
+                                <i className="fas fa-search"></i>
+                                <input placeholder="Search by User" onChange={(event) => setSearchInput(event.target.value)} />
                             </div>
-                            <div className="creat-new-list"><i className="fas fa-sliders-h" onClick={toggleDrawer(true)}></i></div>
-
+                            <div className="creat-new-list" onClick={toggleDrawer(true)}><i className="fas fa-sliders-h"></i></div>
                         </div>
                     </div>
-                    <div className="data-table-container">
-                        {historyWechat && currentHistory ?
-                            <>
-                                <div className="wechat-history" >
-                                    {historyWechat && historyWechat.map((item) => {
-                                        return <div className={item.id === currentHistory.id ? "wechat-history-item history-item-current" : "wechat-history-item"}
-                                            key={item.id} onClick={() => setCurrentHistory(item)}>
-                                            <div className="history-item-title">
-                                                <div className="history-avatar-container">
-                                                    <div className="avatar-title"><p>{item.remark.slice(0, 2)}</p></div>
-                                                    <p>{item.remark}</p>
-                                                </div>
-                                                <div className="history-item-date">{moment.unix(item.latest_message.sent_at).format('DD/MM/YYYY')}</div>
-                                            </div>
-                                            <div className="history-item-content">{item.latest_message.content}</div>
-                                        </div>
-                                    })}
-                                </div>
-                                <div className="wechat-history-padding"></div>
-                                <div className="wechat-history-content">
-                                    {currentHistory && <WechatMessage currentHistory={currentHistory} />}
-                                </div>
-                            </>
-                            : <div className="error-no-result">No result user and content</div>}
+                    <div className="media-link-content">
+                        {value === 0 ? < MediaWechat searchDateHistory={searchDateHistory} searchInput={searchInput} /> : < LinkWechat searchDateHistory={searchDateHistory} searchInput={searchInput} />}
                     </div>
-                </div>
-            </div>
+                </>
+            }
             <div >
                 <Drawer
                     anchor={'right'}
@@ -151,8 +150,8 @@ function WechatLog() {
                     </div>
                 </Drawer>
             </div>
-
         </div>
     )
+
 }
-export default (WechatLog);
+export default (WechatMediaLink)

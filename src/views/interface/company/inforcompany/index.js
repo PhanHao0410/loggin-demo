@@ -6,15 +6,25 @@ import ModelCompany from "../modelcompany/index";
 import { getRequest } from '../../../../services';
 import { Button, List, ListItem, Drawer, Divider, PaperProps } from "@mui/material";
 import { height } from "@mui/system";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Moment from "react-moment";
+
 
 const TABS = [{ title: 'Activities', types: '' }, { title: 'Estimates', types: '' }, { title: 'Model', types: '&type=model' },
 { title: 'Report', types: '&type=report' }, { title: 'All Files/Links', types: '' }]
 function InforCompany() {
     const params = useParams();
+    const moment = require('moment');
     const [company, setCompany] = useState({})
     const [currentTab, setCurrentTab] = useState(TABS[0])
     const [modalDrawer, setModalDrawer] = useState(false)
-
+    const [valueDateStart, setValueDateStart] = useState(null)
+    const [valueDateEnd, setValueDateEnd] = useState(null)
+    const [dateStartToChild, setDateStartToChild] = useState({})
+    const [dateEndToChild, setDateEndToChild] = useState({})
     useEffect(() => {
         const url = `companies/${params.id}`;
         getRequest(url, (data) => {
@@ -26,8 +36,17 @@ function InforCompany() {
     const toggleDrawer = (open) => (event) => {
         setModalDrawer(open)
     }
-    const clickShowStartDateSearch = () => {
-        alert('show start date')
+    const clickApplyDate = () => {
+        setModalDrawer(false)
+        setDateStartToChild(valueDateStart)
+        setDateEndToChild(valueDateEnd)
+        // { valueDateStart !== null ? console.log('check start date: ', moment(valueDateStart.$d).format('DD/MM/YYYY')) : console.log('') }
+        // { valueDateEnd !== null ? console.log('check end date: ', moment(valueDateEnd.$d).format('DD/MM/YYYY')) : console.log('') }
+
+    }
+    const clickResetDate = () => {
+        setValueDateStart(null)
+        setValueDateEnd(null)
     }
     return (
         <>
@@ -54,7 +73,7 @@ function InforCompany() {
 
                             </div>
                         </div>
-                        {currentTab.title === 'Activities' && <ActivityCompany />}
+                        {currentTab.title === 'Activities' && <ActivityCompany dateStartToChild={dateStartToChild} dateEndToChild={dateEndToChild} />}
                         {currentTab.title === 'Estimates' &&
                             <div className="estimates-container">
                                 <div className="emtimates-child ">
@@ -259,17 +278,31 @@ function InforCompany() {
                                 <ListItem className="date-range-container">
                                     <div className="date-range-modal">Date Range</div>
                                     <div className="start-end-date">
-                                        <input placeholder="Start Date" />
-                                        <i className="far fa-calendar" onClick={() => clickShowStartDateSearch()}></i>
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <DatePicker
+                                                label="Start Date"
+                                                className="start-date-picker"
+                                                format="DD/MM/YYYY"
+                                                value={valueDateStart}
+                                                onChange={(newValue) => setValueDateStart(newValue)}
+                                            />
+                                        </LocalizationProvider>
                                     </div>
                                     <div className="start-end-date">
-                                        <input type="text" placeholder="End Date"></input>
-                                        <i className="far fa-calendar"></i>
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <DatePicker
+                                                label="End Date"
+                                                className="start-date-picker"
+                                                format="DD/MM/YYYY"
+                                                value={valueDateEnd}
+                                                onChange={(newValue) => setValueDateEnd(newValue)}
+                                            />
+                                        </LocalizationProvider>
                                     </div>
                                 </ListItem>
                                 <ListItem className="action-modal">
-                                    <div className="reset-date">RESET</div>
-                                    <div className="apply-date">APPLY</div>
+                                    <input className="reset-date" type="button" value='Reset' onClick={() => clickResetDate()} />
+                                    <input className="apply-date" type="button" value='Apply' onClick={() => clickApplyDate()} />
                                 </ListItem>
                             </List>
                         </div>

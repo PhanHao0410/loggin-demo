@@ -4,6 +4,7 @@ html{
         min-height: 100vh;
         width: 100%;
         min-width: 60px;
+        height: 100%;
         font-family: "Noto Sans JP", sans-serif;
         box-sizing: border-box; 
         .overall-container{
@@ -58,14 +59,14 @@ html{
                             display: inline-flex;
                             background-color: transparent;
                             align-items: center;
-                            outline: 0px;
+                            outline: 1px;
                             border: 0px;
                             cursor: pointer;
-                            font-size: 16px;
-                            font-weight: 400;
+                            font-size: 14px;
+                            font-weight: 600;
                             letter-spacing: 0.4px;
                             line-height: 1.25;
-                            color:rgb(158, 158, 158);
+                            color:rgb(2,136,209);
                             max-width: 360px;
                             min-width: 90px;
                             min-height: 48px;
@@ -74,6 +75,18 @@ html{
                             text-align: center;
                             flex-direction: column;
                             overflow: hidden;
+                            position: relative;
+                            transition: all 0.15s ease 0s;
+                            &::before{
+                                content: "";
+                                position: absolute;
+                                top: 90%;
+                                left: 5%;
+                                width: 100%;
+                                height: 0.2rem;
+                                background-color: rgb(2,136,209);
+                                transition: all 0.15s ease 2s;
+                            }
                         }
                     }
                     .folder-tools{
@@ -131,7 +144,7 @@ html{
                 }
                 .data-table-container{
                     width: 97%;
-                    height: 70%;
+                    height: 80%;
                     border: 1px solid rgb(0, 0, 0, 0.2);
                     border-radius: 4px;
                     background-color: rgb(255, 255, 255);
@@ -144,10 +157,52 @@ html{
                         height: 100%;
                         width: 25%;
                         border-radius: 4px;
-                    }
-                    .value-time-data{
+                        overflow-y: scroll;
+                        border-right: none;
+                        .history-container{
+                            border-bottom: 1px solid rgb(0, 0, 0, 0.23);
+                            width: 100%;
+                            height: 100px;
+                            border-radius: 4px;
+                            .history-title-container{
+                                padding: 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                .title-child{
+                                    font-weight: 600;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                                .title-time{
 
+                                }
+                            }
+                            .history-content{
+                                margin: 20px 15px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        .choice-item{
+                            background-color: rgb(2,136,209);
+                            color: white;
+                        }
                     }
+                    .value-permissions{
+                        width: 74%;
+                        min-width: 60px;
+                        height: 100%;
+                    }
+                }
+                .error-results{
+                    margin: 20px auto;
+                    color: red;
+                    font-size: 20px;
+                    display: flex;
+                    justify-content: center;
                 }
                     
             }
