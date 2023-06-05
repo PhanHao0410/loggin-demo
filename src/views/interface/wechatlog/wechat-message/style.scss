@@ -1,0 +1,95 @@
+.Wechat-message{
+    width: 100%;
+    height: 90%;
+    position: relative;
+    .wechat-history-title{
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px solid rgb(158, 158, 158);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        .content-history-avatar{
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            .content-box-avatar{
+                width: 40px;
+                height: 40px;
+                border: none;
+                border-radius: 50%;
+                margin-right: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                background-color: rgb(255,165,0);
+                p{
+                    text-align: center;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+            p{
+                font-weight: 600;
+            }
+        }
+        .content-history-icon{
+            border: 1px solid rgb(0, 0, 0, 0.2);
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+            color: black;
+        }
+    }
+    .history-message{
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        .history-content-container{
+            width: 100%;
+            .history-time-send{
+                margin: 16px 0px;
+                font-family: "Noto Sans JP", sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 1.5;
+                color: rgb(33, 33, 33);
+                text-align: center;
+            }
+            .message-history-container{
+                float: right;
+                clear: both;
+                width: 100%;
+                .message-item{
+                    padding: 8px 12px;
+                    align-self: flex-end;
+                    background: rgb(2, 136, 209);
+                    color: rgb(245, 245, 245);
+                    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 10px;
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                    max-width: 65%;
+                    float: right;
+                }
+                .message-image{
+                    max-width: 65%;
+                    float: right;
+                    margin-bottom: 10px;
+                    align-self: flex-end;
+                    border-radius: 4px;
+                    width: 200px;
+                    height: 200px;
+                }
+            } 
+    }
+    }
+    
+}

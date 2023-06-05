@@ -4,10 +4,11 @@ import './App.scss';
 import Login from './views/auths/login';
 import ForgetPassword from './views/auths/forget-password';
 import CreatNewPassword from './views/auths/creat-password';
-import TestSignIn from './views/todo/testSignIn';
+import Menu from './views/interface/menu/index';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { PATHS } from './constants';
 
 
 
@@ -19,10 +20,10 @@ function App() {
       <header>
         <Router>
           <Switch>
-            <Route exact path={["/login", "/"]} component={Login} />
-            <Route path="/forget-password" component={ForgetPassword} />
-            <Route path="/create-password" component={CreatNewPassword} />
-            <Route path="/test-signin-success" component={TestSignIn} />
+            <Route exact path={PATHS.LOGIN} component={Login} />
+            <Route path={PATHS.FORGETPASSWORD} component={ForgetPassword} />
+            <Route path={PATHS.CREATNEWPASSWORD} component={CreatNewPassword} />
+            <Route path={PATHS.HOME} component={Menu} />
           </Switch>
         </Router>
       </header>

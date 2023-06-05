@@ -1,0 +1,373 @@
+html{
+    .Interface{
+        display: flex;
+        font-family: "Noto Sans JP", sans-serif;
+        box-sizing: border-box; 
+        position: relative;
+        width: 100%;
+        
+            .overall-content{
+                width: 100%;
+                height: 100%;
+                background-color: rgb(250, 250, 250);
+                position: relative;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 30px 20px;
+                z-index: 1;
+                font-family: "Noto Sans JP", sans-serif;
+                border-left: 1px solid rgb(224, 224, 224);
+                .content{
+                    color: rgb(33, 33, 33);
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                }
+                .title-content{
+                    color: blue;
+                    display: flex;
+                    align-items: center;
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 1.6;
+                    letter-spacing: 0.15px;
+                    color: rgb(33, 33, 33);
+                    margin: 15px 10px 15px 0px;
+                }
+                .toolbars-content{
+                    width: 100%;
+                    border: 1px solid rgb(224, 224, 224);
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-radius: 4px;
+                    background-color: rgb(255, 255, 255);
+                    overflow-y: hidden;
+                    flex-wrap: nowrap;
+                    padding: 10px 0px;
+                    position: relative;
+                    .title-tools{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        min-height: 48px;
+                        .btn-title-tools{
+                            display: inline-flex;
+                            background-color: transparent;
+                            align-items: center;
+                            outline: 0px;
+                            border: 0px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            font-weight: 400;
+                            letter-spacing: 0.4px;
+                            line-height: 1.25;
+                            color:rgb(158, 158, 158);
+                            max-width: 360px;
+                            min-width: 90px;
+                            min-height: 48px;
+                            flex-shrink: 0;
+                            padding: 12px 16px;
+                            text-align: center;
+                            flex-direction: column;
+                            overflow: hidden;
+                            transition: all 0.15s ease 0s;
+                        }
+                        .btn-title-change{
+                            display: inline-flex;
+                            background-color: transparent;
+                            align-items: center;
+                            outline: 1px;
+                            border: 0px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            font-weight: 600;
+                            letter-spacing: 0.4px;
+                            line-height: 1.25;
+                            color:rgb(2,136,209);
+                            max-width: 360px;
+                            min-width: 90px;
+                            min-height: 48px;
+                            flex-shrink: 0;
+                            padding: 12px 16px;
+                            text-align: center;
+                            flex-direction: column;
+                            overflow: hidden;
+                            position: relative;
+                            transition: all 0.15s ease 0s;
+                            &::before{
+                                content: "";
+                                position: absolute;
+                                top: 90%;
+                                left: 5%;
+                                width: 100%;
+                                height: 0.2rem;
+                                background-color: rgb(2,136,209);
+                                transition: all 0.15s ease 2s;
+                            }
+                        }
+                    }
+                    .folder-tools{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        min-width: 45px;
+                        overflow: hidden;
+                        padding-right: 10px;
+                        .creat-new-list{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            height: 36px;
+                            padding: 0px 10px;
+                            border: 1px solid rgba(0, 0, 0, 0.23);
+                            border-radius: 4px;
+                            margin: 0px 10px;
+                            cursor: pointer;
+                            i{
+                                font-size: 1.1rem;
+                                color: black;
+                            }
+                        }
+                    }
+                }
+                .data-table-container{
+                    width: 100%;
+                    height: 100%;
+                    border: 1px solid rgb(0, 0, 0, 0.2);
+                    border-radius: 4px;
+                    background-color: rgb(255, 255, 255);
+                    margin-top: 20px;
+                    position: relative;
+                    overflow-y: hidden;
+                    overflow-x: auto;
+                    z-index: 1;
+                    .data-table-title{
+                        display: table;
+                        width: 100%;
+                        height: 100%;
+                        border-collapse: collapse;
+                        border-spacing: 0px;
+                        min-width: 650px;
+                        overflow-x: auto;
+                        .thead-data-table{
+                            display: table-header-group;
+                            font-size: 14px;
+                            background: rgba(0, 0, 0, 0.04);
+                            color: rgb(33, 33, 33);
+                            
+                            .border-rights{
+                                border-right: 1px solid rgba(0, 0, 0, 0.2);
+                            }
+                            .border-bottoms{
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                            }
+                            .first-thead-data{
+                                display: table-row;
+                                vertical-align: middle;
+                                outline: 0px;
+                                td{
+                                    font-size: 14px;
+                                    letter-spacing: 0.4px;
+                                    line-height: 1.5rem;
+                                    color: rgb(33, 33, 33);
+                                    display: table-cell;
+                                    vertical-align: inherit;
+                                    text-align: center;
+                                    padding: 16px;
+                                    font-weight: 600;
+                                }
+                                th{
+                                    font-size: 14px;
+                                    letter-spacing: 0.4px;
+                                    line-height: 1.5rem;
+                                    color: rgb(33, 33, 33);
+                                    display: table-cell;
+                                    vertical-align: inherit;
+                                    text-align: center;
+                                    padding: 16px;
+                                    font-weight: 600;
+                                }
+                                
+                            }
+                        }
+                        tbody{
+                            height: 100%;
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                            tr{
+                                height: 62px;
+                                display: table-row;
+                                vertical-align: middle;
+                               td{
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                                font-size: 14px;
+                                line-height: 1.5;
+                                text-align: center;
+                                font-weight: 400;
+                                color: rgb(33, 33, 33);
+                                padding: 5px 5px 0px;
+                                }
+                                .company-ticker{
+                                    letter-spacing: 0.4px;
+                                }
+                                .company-name{
+                                    color: rgb(2,136,209);
+                                    letter-spacing: 0.4px;
+                                   text-decoration: none;
+                                }
+                                .company-eps-item{
+                                    .company-number-change{
+                                        align-items: center;
+                                        margin-top: -5px;
+                                        p{
+                                            i{
+                                                  padding: 0px 5px;  
+                                            }
+                                        }
+                                        
+                                        
+                                        .color-green{
+                                            color: rgb(47,125,51);
+                                        }
+                                        .color-red{
+                                            color: rgb(211,47,47);
+                                        }
+                                    }   
+                                        
+                                    .btn-update-estimate{
+                                        display: inline-block;
+                                        background-color: black;
+                                        position: absolute;
+                                        z-index: 2;
+                                        border-radius: 4px;
+                                        box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+                                        width: 120px;
+                                        background-color: rgb(255, 255, 255);
+                                        color: rgb(33, 33, 33);
+                                        padding: 15px 5px;
+                                        margin-top: 20px;
+                                        margin-left: -115px;
+                                        cursor: pointer;
+                                        &:hover{
+                                            background-color: rgb(245,245,245);
+                                        }
+                                    }
+                                    .display-none{
+                                        display: none; 
+                                    }
+                                    .btn-icon-update{
+                                        cursor: pointer;
+                                        padding: 0px 5px;
+                                    }
+                                        
+                                        
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+                }
+                .pagination{
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                    width: 100%;
+                    border-radius: 4px;
+                    background-color: white;
+                    position: relative;
+                    z-index: 1;
+                }
+                
+            }
+            .modal-update-container{
+                width: 42%;
+                height: 42%;
+                position: absolute;
+                z-index: 2;
+                float: right;
+                background-color: rgb(255, 255, 255);
+                margin-left: 25%;
+                margin-top: 6%;
+                opacity: 1 !important; 
+                border-radius: 4px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 11px 15px -7px,
+                            rgba(0, 0, 0, 0.14) 0px 24px 38px 3px,
+                            rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+                
+                .modal-update-title{
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                }
+                .border-rights{
+                    border-right: 1px solid rgb(0, 0, 0, 0.23);
+                }
+                .modal-update-infor{
+                    width: 93%;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    overflow-x: auto;
+                    .infor-actual-eps{
+                        h6{
+                            font-size: 14px;
+                        }
+                        table{
+                            margin-top: -20px;
+                            display: table;
+                            border: 1px solid rgb(0, 0, 0, 0.23);
+                            border-radius: 4px;
+                            thead{
+                                th{
+                                    height: 40px;
+                                    font-size: 14px;
+                                    background-color: rgb(245, 245, 245);
+                                }
+                            }
+                            tbody{
+                                td{
+                                input{
+                                    width: 50px;
+                                    color: green;
+                                    height: 30px;
+                                    border: 1px solid rgba(0, 0, 0, 0.23);
+                                    border-radius: 6px;
+                                    margin: 10px 20px 10px 20px;
+                                    // outline: 2px solid rgb(209, 209, 209);
+                                    &::-moz-in{
+                                        border: 2px solid rgb(209, 209, 209);
+                                    }
+                                }
+                                }
+                                
+                            }
+                        }
+                    }
+                    
+        
+                }
+                .modal-update-action{
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 30px;
+                    margin-right: 40px;
+                    font-size: 15px;
+                    font-weight: 600;
+                    font-family: "Noto Sans JP", sans-serif;
+                    .modal-action-cancel{
+                        margin: 0px 20px;
+                        color: rgb(102, 102, 102);
+                        cursor: pointer;
+                    }
+                    .modal-action-update{
+                        color: rgb(46, 127, 73);
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+    }
+        
+}
+
+
